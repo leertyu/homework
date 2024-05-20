@@ -10,6 +10,7 @@
       minlength="5"
       maxlength="10"
       [(ngModel)]="form.username"
+      [ngClass]="{ 'is-invalid' : f.submitted && username.invalid }"
       #username="ngModel"
     />
     <input
@@ -19,6 +20,7 @@
       name="password"
       required
       [(ngModel)]="form.password"
+      [ngClass]="{ 'is-invalid' : f.submitted && password.invalid }"
       #password="ngModel"
     />
     <input type="submit" value="Log In" class="submit">
