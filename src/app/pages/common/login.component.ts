@@ -21,7 +21,7 @@ export class LoginComponent {
     this.authService.login(this.form).subscribe({
       next: (data) =>  {
         this.localStorageService.setItem('USER', JSON.stringify(data.data));
-        this.router.navigate(['/question'])
+        this.router.navigate(['/categories'])
       },
       error: (err) => {
         this.dialog.open(
