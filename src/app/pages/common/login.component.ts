@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { UserModel } from '../../models/user-model';
+import { AuthService } from '../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +13,21 @@ export class LoginComponent {
 
   form = new UserModel();
 
-  constructor() {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   onSubmit(){
+    this.authService.login(this.form).subscribe({
+      next: (data) =>  {
+        console.log(data);
+      },
+      error: (err) => {
 
-    const { username, password } = this.form
+        console.log(err);
 
-    console.log(username, password);
+        this.dialog.open(
+          ErrorDialogComponent, { data : { message: err.error.statusMessage}}
+        )
+      }
+    })
   }
-
 }

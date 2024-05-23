@@ -6,20 +6,26 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/common/login.component';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ErrorComponent } from './pages/dialog/error.component';
 import { ValidateErrorComponent } from './pages/validate/validate-error.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorDialogComponent } from './pages/error-dialog/error-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorComponent,
-    ValidateErrorComponent
+    ValidateErrorComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatButton
   ],
   providers: [
     provideAnimationsAsync()
