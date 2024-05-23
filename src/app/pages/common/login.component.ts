@@ -20,7 +20,7 @@ export class LoginComponent {
   onSubmit(){
     this.authService.login(this.form).subscribe({
       next: (data) =>  {
-        this.localStorageService.setItem('USER', data);
+        this.localStorageService.setItem('USER', JSON.stringify(data.data));
         this.router.navigate(['/question'])
       },
       error: (err) => {
