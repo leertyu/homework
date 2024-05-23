@@ -13,6 +13,16 @@
       [ngClass]="{ 'is-invalid' : f.submitted && username.invalid }"
       #username="ngModel"
     />
+    <app-validate-error
+      class="invalid-feedback"
+      [control]="username"
+      [messages]="{ required : 'Username is required.',
+                    minlength : 'Username must be at least 3 characters.',
+                    maxlength : 'Username must be at most 10 characters.',
+      }"
+      [submitted]="f.submitted"
+    >
+    </app-validate-error>
     <input
       id="password"
       type="password"
@@ -23,6 +33,13 @@
       [ngClass]="{ 'is-invalid' : f.submitted && password.invalid }"
       #password="ngModel"
     />
-    <input type="submit" value="Log In" class="submit">
+    <app-validate-error
+        class="invalid-feedback"
+        [control]="password"
+        [messages]="{ required : 'Password is required.' }"
+        [submitted]="f.submitted"
+    >
+    </app-validate-error>
+    <input type="submit" value="Log In" class="submit" >
   </form>
 </div>

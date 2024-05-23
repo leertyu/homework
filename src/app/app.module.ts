@@ -7,12 +7,14 @@ import { LoginComponent } from './pages/common/login.component';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ErrorComponent } from './pages/dialog/error.component';
+import { ValidateErrorComponent } from './pages/validate/validate-error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorComponent
+    ErrorComponent,
+    ValidateErrorComponent
   ],
   imports: [
     BrowserModule,
