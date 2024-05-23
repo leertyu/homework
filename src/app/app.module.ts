@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorDialogComponent } from './pages/error-dialog/error-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
+import { CategoriesComponent } from './pages/questions/categories/categories.component';
+import { QuestionComponent } from './pages/questions/question/question.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatButton } from '@angular/material/button';
     LoginComponent,
     ValidateErrorComponent,
     ErrorDialogComponent,
+    CategoriesComponent,
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,
