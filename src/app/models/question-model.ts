@@ -42,3 +42,26 @@ export class AnswerModel {
   }
 }
 
+export class QuestionSubmitModel {
+  questionCategoryId: string;
+  questions: AnswerSubmitModel;
+
+  constructor(){
+    this.questionCategoryId = '';
+    this.questions = new AnswerSubmitModel();
+  }
+}
+
+export class AnswerSubmitModel {
+  questionId: string;
+  answers: AnswerModel;
+
+  constructor(){
+    this.questionId = '';
+    this.answers = new AnswerModel();
+  }
+}
+
+
+
+

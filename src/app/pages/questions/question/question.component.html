@@ -1,1 +1,20 @@
-<p>question works!</p>
+<mat-stepper #stepper>
+  <mat-step *ngFor="let quest of questionInfo; let first = first; let last = last;">
+    <ng-template matStepLabel>Exam &nbsp; {{quest.sequence}}</ng-template>
+    <mat-card class="result">
+      <mat-card-content>
+        <h2 class="example-h2">{{quest.title}}</h2>
+        <section class="example-section">
+          <mat-checkbox *ngFor="let ans of quest.questionAnswerInfo" class="example-margin">
+            {{ans.answer}}
+          </mat-checkbox>
+        </section>
+      </mat-card-content>
+    </mat-card>
+    <div>
+      <button *ngIf="!first" mat-button matStepperPrevious>Back</button>
+      <button *ngIf="!last" mat-button matStepperNext>Next</button>
+      <button  mat-button (click)="onSubmit()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -13,11 +13,9 @@ export class CategoriesComponent {
 
   categories: any;
 
-  constructor(private questionService: QuestionService, private router: Router, private localStorageService: LocalStorageService){
+  constructor(private questionService: QuestionService, private router: Router, private localStorageService: LocalStorageService){ }
 
-  }
-
-  ngAfterContentInit(){
+  ngOnInit(){
     this.questionService.getCategories().subscribe({
       next: (data) =>  {
         this.categories = data.data;
