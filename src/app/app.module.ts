@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorDialogComponent } from './pages/error-dialog/error-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './pages/questions/categories/categories.component';
 import { QuestionComponent } from './pages/questions/question/question.component';
 
@@ -29,7 +30,8 @@ import { QuestionComponent } from './pages/questions/question/question.component
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatButton
+    MatButton,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync()

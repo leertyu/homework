@@ -1,1 +1,16 @@
-<p>categories works!</p>
+<button class="back">
+  <i class="mdi mdi-arrow-left"></i>
+</button>
+
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+
+<div class="stage">
+  <div class="folder-wrap level-current scrolling">
+    <div *ngFor="let item of categories" class="tile folder">
+      <i class="mdi mdi-folder"></i>
+      <h3>{{item.title}}</h3>
+      <p>{{item.questionCategoryId}}</p>
+    </div><!-- .tile.folder -->
+  </div>
+</div><!-- .stage -->
