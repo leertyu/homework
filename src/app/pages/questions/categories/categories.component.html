@@ -7,7 +7,7 @@
 
 <div class="stage">
   <div class="folder-wrap level-current scrolling">
-    <div *ngFor="let item of categories" class="tile folder">
+    <div *ngFor="let item of categories" class="tile folder" (click)="onSelectCategory(item.questionCategoryId)">
       <i class="mdi mdi-folder"></i>
       <h3>{{item.title}}</h3>
       <p>{{item.questionCategoryId}}</p>

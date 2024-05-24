@@ -25,4 +25,10 @@ export class QuestionService {
       questionUrl + '/categories', httpOptions
     )
   }
+
+  getCategoriesDetail(categoryId: string): Observable<any>{
+    return this.client.get(
+      questionUrl + '/categories/' + categoryId, httpOptions
+    )
+  }
 }
