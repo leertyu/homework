@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { PepareAnswerSubmitModel, QuestionSubmitModel } from '../../../models/question-model';
+import { AnswerDetailSubmitModel, AnswerSubmitModel, PepareAnswerSubmitModel, QuestionSubmitModel } from '../../../models/question-model';
 
 @Component({
   selector: 'app-question',
@@ -50,13 +50,29 @@ export class QuestionComponent {
     else {
       this.pepareAnswer.splice(this.pepareAnswer.findIndex(x => x.questionId === questionId && x.questionAnswerId === questionAnswerId), 1);
     }
-    this.onSubmit()
   }
 
   onSubmit(){
-    console.log(this.answer);
     for(let item of this.questionInfo){
-      console.log(item.questionId);
+      let ansData = new AnswerSubmitModel();
+      ansData.questionId = item.questionId;
+      const result = this.pepareAnswer.filter(x => x.questionId === item.questionId);
+      for(let ans of result){
+        let ansDetail = new AnswerDetailSubmitModel();
+        ansDetail.questionAnswerId = ans.questionAnswerId;
+        ansData.answers.push(ansDetail);
+      }
+      this.answer.questions.push(ansData);
     }
+    console.log(this.answer);
+
+    this.questionService.submitAnswer(this.answer).subscribe({
+      next: (data) =>  {
+       console.log(data);
+       this.questionInfo = data.data.questionInfo;
+      },
+      error: (err) => {
+      }
+    })
   }
 }

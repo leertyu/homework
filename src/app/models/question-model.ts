@@ -54,11 +54,19 @@ export class QuestionSubmitModel {
 
 export class AnswerSubmitModel {
   questionId: string;
-  answers: AnswerModel[];
+  answers: AnswerDetailSubmitModel[];
 
   constructor(){
     this.questionId = '';
     this.answers = [];
+  }
+}
+
+export class AnswerDetailSubmitModel {
+  questionAnswerId: string;
+
+  constructor(){
+    this.questionAnswerId = '';
   }
 }
 

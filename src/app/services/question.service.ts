@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '../services/local-storage.service';
 import { CategoryModel } from '../models/category-model';
+import { QuestionSubmitModel } from '../models/question-model';
 
 const questionUrl = 'https://training-homework.calllab.net/v1/questions';
 
@@ -36,6 +37,19 @@ export class QuestionService {
     }
     return this.client.get(
       questionUrl + '/categories/' + categoryId, httpOptions
+    )
+  }
+
+  submitAnswer(answer: QuestionSubmitModel): Observable<any>{
+    const user = localStorage.getItem('USER');
+    const accessToken = user !== null ? JSON.parse(user).accessToken : '';
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      })
+    }
+    return this.client.post(
+      questionUrl + '/submit-assignment', answer, httpOptions
     )
   }
 }
