@@ -5,7 +5,7 @@
       <mat-card-content>
         <h2 class="example-h2">{{quest.title}}</h2>
         <section class="example-section">
-          <mat-checkbox *ngFor="let ans of quest.questionAnswerInfo" class="example-margin">
+          <mat-checkbox *ngFor="let ans of quest.questionAnswerInfo" (change)="onSelectAnswer($event, quest.questionId, ans.questionAnswerId)" class="example-margin">
             {{ans.answer}}
           </mat-checkbox>
         </section>

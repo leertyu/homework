@@ -44,23 +44,34 @@ export class AnswerModel {
 
 export class QuestionSubmitModel {
   questionCategoryId: string;
-  questions: AnswerSubmitModel;
+  questions: AnswerSubmitModel[];
 
   constructor(){
     this.questionCategoryId = '';
-    this.questions = new AnswerSubmitModel();
+    this.questions = [];
   }
 }
 
 export class AnswerSubmitModel {
   questionId: string;
-  answers: AnswerModel;
+  answers: AnswerModel[];
 
   constructor(){
     this.questionId = '';
-    this.answers = new AnswerModel();
+    this.answers = [];
   }
 }
+
+export class PepareAnswerSubmitModel {
+  questionId: string;
+  questionAnswerId: string;
+
+  constructor(){
+    this.questionId = '';
+    this.questionAnswerId = '';
+  }
+}
+
 
 
 
