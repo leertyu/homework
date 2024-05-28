@@ -55,7 +55,6 @@ export class QuestionComponent {
 
     this.questionService.getCategoriesDetail(categoryIdParse).subscribe({
       next: (data) =>  {
-        console.log(data.data.timeLimitOfMinuteUnit)
         this.timeLimit = data.data.timeLimitOfMinuteUnit;
         this.questionInfo = data.data.questionInfo;
       },
@@ -74,7 +73,6 @@ export class QuestionComponent {
   }
 
   onSelectAnswer(values:any, questionId: string, questionAnswerId: string){
-    console.log(values.checked);
     if (values.checked){
       let data = new PepareAnswerSubmitModel();
       data.questionId = questionId;
@@ -137,7 +135,7 @@ export class QuestionComponent {
     const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
     const formattedSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
     if (totalSeconds == 0){
-
+      this.onSubmit();
     }
     //day
     this.tenupday = Math.floor(days / 10);
