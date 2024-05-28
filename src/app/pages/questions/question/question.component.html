@@ -224,7 +224,7 @@
   </ul>
 </div>
 
-<mat-stepper  [linear]="true" #stepper>
+<mat-stepper [linear]="true" #stepper>
   <mat-step *ngFor="let quest of questionInfo; let first = first; let last = last;">
     <ng-template matStepLabel>Exam &nbsp; {{quest.sequence}}</ng-template>
     <mat-card class="result">
