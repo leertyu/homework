@@ -17,6 +17,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CategoriesComponent } from './pages/questions/categories/categories.component';
 import { QuestionComponent } from './pages/questions/question/question.component';
+import { ScoreComponent } from './pages/questions/score/score.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { QuestionComponent } from './pages/questions/question/question.component
     ErrorDialogComponent,
     CategoriesComponent,
     QuestionComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,
