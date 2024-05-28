@@ -42,6 +42,8 @@ export class QuestionComponent {
   tendownsec: number = 0;
   upsec: number = 0;
   downsec: number = 0;
+  timeLimit: number = 0;
+  cantGo: boolean = true;
   countdownObs$!:Observable<string> //declare an observable
 
   constructor(private questionService: QuestionService, private router: Router, private localStorageService: LocalStorageService, private formBuilder: FormBuilder){ }
@@ -53,7 +55,9 @@ export class QuestionComponent {
 
     this.questionService.getCategoriesDetail(categoryIdParse).subscribe({
       next: (data) =>  {
-       this.questionInfo = data.data.questionInfo;
+        console.log(data.data.timeLimitOfMinuteUnit)
+        this.timeLimit = data.data.timeLimitOfMinuteUnit;
+        this.questionInfo = data.data.questionInfo;
       },
       error: (err) => {
         this.localStorageService.clear();
@@ -69,52 +73,32 @@ export class QuestionComponent {
     this.countdownSubscription.unsubscribe();
   }
 
-  countdownTimer(seconds: number) {
-     const totalSeconds = Math.floor((this.targetDay + 602000 - Date.now()) / 1000);
-     const days = Math.floor(totalSeconds / (60 * 60 * 24));
-     const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-     const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-     const remainingSeconds = totalSeconds % 60;
-     const formattedDays = days < 10 ? '0' + days : days;
-     const formattedHours = hours < 10 ? '0' + hours : hours;
-     const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-     const formattedSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
-     if (totalSeconds == 0){
-
-     }
-     //day
-     this.tenupday = Math.floor(days / 10);
-     this.tendownday = Math.floor(days / 10);
-     this.upday = days % 10;
-     this.downday = days % 10;
-     //hour
-     this.tenuphour = Math.floor(hours / 10);
-     this.tendownhour = Math.floor(hours / 10);
-     this.uphour = hours % 10;
-     this.downhour = hours % 10;
-     //miniute
-     this.tenupmin = Math.floor(minutes / 10);
-     this.tendownmin = Math.floor(minutes / 10);
-     this.upmin = minutes % 10;
-     this.downmin = minutes % 10;
-     //seccond
-     this.tenupsec = Math.floor(remainingSeconds / 10);
-     this.tendownsec = Math.floor(remainingSeconds / 10);
-     this.upsec = remainingSeconds % 10;
-     this.downsec = remainingSeconds % 10;
-     return formattedDays+":"+formattedHours+":"+formattedMinutes+":"+formattedSeconds
-  }
-
   onSelectAnswer(values:any, questionId: string, questionAnswerId: string){
+    console.log(values.checked);
     if (values.checked){
       let data = new PepareAnswerSubmitModel();
       data.questionId = questionId;
       data.questionAnswerId = questionAnswerId;
       this.pepareAnswer.push(data);
+      this.cantGo = false;
     }
     else {
+
       this.pepareAnswer.splice(this.pepareAnswer.findIndex(x => x.questionId === questionId && x.questionAnswerId === questionAnswerId), 1);
+      const result = this.pepareAnswer.filter(x => x.questionId === questionId);
+      if (result.length <= 0)
+      {
+        this.cantGo = true;
+      }
     }
+  }
+
+  onBack(){
+    this.cantGo = false;
+  }
+
+  onNext(){
+    this.cantGo = true;
   }
 
   onSubmit(){
@@ -141,4 +125,41 @@ export class QuestionComponent {
       }
     })
   }
+
+  countdownTimer(seconds: number) {
+    const totalSeconds = Math.floor((this.targetDay + 2000 + (this.timeLimit * 60 * 1000) - Date.now()) / 1000);
+    const days = Math.floor(totalSeconds / (60 * 60 * 24));
+    const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const remainingSeconds = totalSeconds % 60;
+    const formattedDays = days < 10 ? '0' + days : days;
+    const formattedHours = hours < 10 ? '0' + hours : hours;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+    if (totalSeconds == 0){
+
+    }
+    //day
+    this.tenupday = Math.floor(days / 10);
+    this.tendownday = Math.floor(days / 10);
+    this.upday = days % 10;
+    this.downday = days % 10;
+    //hour
+    this.tenuphour = Math.floor(hours / 10);
+    this.tendownhour = Math.floor(hours / 10);
+    this.uphour = hours % 10;
+    this.downhour = hours % 10;
+    //miniute
+    this.tenupmin = Math.floor(minutes / 10);
+    this.tendownmin = Math.floor(minutes / 10);
+    this.upmin = minutes % 10;
+    this.downmin = minutes % 10;
+    //seccond
+    this.tenupsec = Math.floor(remainingSeconds / 10);
+    this.tendownsec = Math.floor(remainingSeconds / 10);
+    this.upsec = remainingSeconds % 10;
+    this.downsec = remainingSeconds % 10;
+    return formattedDays+":"+formattedHours+":"+formattedMinutes+":"+formattedSeconds
+  }
+
 }

@@ -1,5 +1,6 @@
 
 <app-navbar></app-navbar>
+
 <div class="clock flip-clock-wrapper" style="margin:2em;">
   <span class="flip-clock-divider days">
     <span class="flip-clock-label">Days</span>
@@ -222,8 +223,7 @@
     </li>
   </ul>
 </div>
-<div class="message"></div>
-{{countdownObs$|async}}
+
 <mat-stepper #stepper>
   <mat-step *ngFor="let quest of questionInfo; let first = first; let last = last;">
     <ng-template matStepLabel>Exam &nbsp; {{quest.sequence}}</ng-template>
@@ -238,9 +238,9 @@
       </mat-card-content>
     </mat-card>
     <div>
-      <button *ngIf="!first" mat-button matStepperPrevious>Back</button>
-      <button *ngIf="!last" mat-button matStepperNext>Next</button>
-      <button *ngIf="last"mat-button (click)="onSubmit()">Reset</button>
+      <button *ngIf="!first" mat-button matStepperPrevious (click)="onBack()">Back</button>
+      <button [disabled]="cantGo" *ngIf="!last" mat-button matStepperNext (click)="onNext()">Next</button>
+      <button *ngIf="last"mat-button (click)="onSubmit()">Submit</button>
     </div>
   </mat-step>
 </mat-stepper>
