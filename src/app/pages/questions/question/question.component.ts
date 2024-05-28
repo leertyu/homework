@@ -39,8 +39,6 @@ export class QuestionComponent {
   }
 
   onSelectAnswer(values:any, questionId: string, questionAnswerId: string){
-    console.log(values.checked);
-    console.log(questionId, questionAnswerId);
     if (values.checked){
       let data = new PepareAnswerSubmitModel();
       data.questionId = questionId;
@@ -64,12 +62,11 @@ export class QuestionComponent {
       }
       this.answer.questions.push(ansData);
     }
-    console.log(this.answer);
 
     this.questionService.submitAnswer(this.answer).subscribe({
       next: (data) =>  {
-       console.log(data);
-       this.questionInfo = data.data.questionInfo;
+       this.localStorageService.setItem('SCORE', JSON.stringify(data.data));
+       this.router.navigate(['/score'])
       },
       error: (err) => {
       }
