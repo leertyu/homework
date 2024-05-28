@@ -6,6 +6,7 @@ import { CategoriesComponent } from './pages/questions/categories/categories.com
 import { ScoreComponent } from './pages/questions/score/score.component';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'categories', component: CategoriesComponent },
