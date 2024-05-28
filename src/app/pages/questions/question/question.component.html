@@ -14,7 +14,7 @@
     <div>
       <button *ngIf="!first" mat-button matStepperPrevious>Back</button>
       <button *ngIf="!last" mat-button matStepperNext>Next</button>
-      <button  mat-button (click)="onSubmit()">Reset</button>
+      <button *ngIf="last"mat-button (click)="onSubmit()">Reset</button>
     </div>
   </mat-step>
 </mat-stepper>

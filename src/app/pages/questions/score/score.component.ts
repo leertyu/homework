@@ -17,7 +17,6 @@ export class ScoreComponent {
   ngOnInit(){
     const score = this.localStorageService.getItem('SCORE');
     const scoreText = score !== null ? JSON.parse(score) : '';
-    console.log(scoreText);
     this.yourscore = scoreText.score;
     this.fullscore = scoreText.fullScore;
   }
