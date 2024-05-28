@@ -21,6 +21,8 @@ export class CategoriesComponent {
         this.categories = data.data;
       },
       error: (err) => {
+        this.localStorageService.clear();
+        this.router.navigate(['/login'])
       }
     })
   }

@@ -18,7 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CategoriesComponent } from './pages/questions/categories/categories.component';
 import { QuestionComponent } from './pages/questions/question/question.component';
 import { ScoreComponent } from './pages/questions/score/score.component';
-
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { ScoreComponent } from './pages/questions/score/score.component';
     CategoriesComponent,
     QuestionComponent,
     ScoreComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { ScoreComponent } from './pages/questions/score/score.component';
     MatStepperModule,
     MatInputModule,
     MatCheckboxModule,
+    MatIconModule,
     ReactiveFormsModule
   ],
   providers: [
