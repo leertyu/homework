@@ -224,13 +224,13 @@
   </ul>
 </div>
 
-<mat-stepper #stepper>
+<mat-stepper  [linear]="true" #stepper>
   <mat-step *ngFor="let quest of questionInfo; let first = first; let last = last;">
     <ng-template matStepLabel>Exam &nbsp; {{quest.sequence}}</ng-template>
     <mat-card class="result">
       <mat-card-content>
         <h2 class="example-h2">{{quest.title}}</h2>
-        <section class="example-section">
+        <section class="example-section" required>
           <mat-checkbox *ngFor="let ans of quest.questionAnswerInfo" (change)="onSelectAnswer($event, quest.questionId, ans.questionAnswerId)" class="example-margin">
             {{ans.answer}}
           </mat-checkbox>
@@ -238,8 +238,8 @@
       </mat-card-content>
     </mat-card>
     <div>
-      <button *ngIf="!first" mat-button matStepperPrevious (click)="onBack()">Back</button>
-      <button [disabled]="cantGo" *ngIf="!last" mat-button matStepperNext (click)="onNext()">Next</button>
+      <button *ngIf="!first" mat-button matStepperPrevious>Back</button>
+      <button [disabled]="cantGo" *ngIf="!last" mat-button matStepperNext>Next</button>
       <button *ngIf="last"mat-button (click)="onSubmit()">Submit</button>
     </div>
   </mat-step>

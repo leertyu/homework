@@ -91,14 +91,6 @@ export class QuestionComponent {
     }
   }
 
-  onBack(){
-    this.cantGo = false;
-  }
-
-  onNext(){
-    this.cantGo = true;
-  }
-
   onSubmit(){
     for(let item of this.questionInfo){
       let ansData = new AnswerSubmitModel();
